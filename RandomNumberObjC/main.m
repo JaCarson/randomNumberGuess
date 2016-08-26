@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
+
+
+
 BOOL runGame();
 BOOL askForReplay();
 
@@ -22,6 +26,9 @@ int main(int argc, const char * argv[]) {
 }
 
 BOOL runGame() {
+    
+    NSMutableArray *userGuess = [[NSMutableArray alloc] init];
+
     int number, guess;
     
     int numberOfItemsScanned = -1;
@@ -42,11 +49,15 @@ BOOL runGame() {
             fpurge(stdin);
             numberOfItemsScanned = scanf("%i", &guess);
             if (numberOfItemsScanned != 1 || (guess < 1) || (guess > 5)) {
+                
                 NSLog(@"That is not a number! Try one of these! %@\n", array);
                 numberOfItemsScanned = 0;
             }
             
         }
+        
+        [userGuess addObject: @(guess)];
+        
         NSLog (@"You chose %i.", guess);
         
         if (guess > randomNumber) {
@@ -59,6 +70,7 @@ BOOL runGame() {
     }
     
     NSLog(@"Conglaturation ! ! ! !");
+    NSLog(@"          Previous Guesses\n: %@", userGuess);
     return askForReplay();
 }
 
