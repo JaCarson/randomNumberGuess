@@ -30,13 +30,11 @@ BOOL runGame() {
     
     while (guess != randomNumber) {
         
-        NSArray *array = @[
-                           @"1",
+        NSArray *array = @[@"1",
                            @"2",
                            @"3",
                            @"4",
-                           @"5"
-                           ];
+                           @"5"];
         
         NSLog(@"Can you guess which number from the following list that I am thinking of?: %@\n", array);
         
@@ -44,7 +42,7 @@ BOOL runGame() {
             fpurge(stdin);
             numberOfItemsScanned = scanf("%i", &guess);
             if (numberOfItemsScanned != 1 || (guess < 1) || (guess > 5)) {
-                NSLog(@"That's not a number! Try one of these! %@\n", array);
+                NSLog(@"That is not a number! Try one of these! %@\n", array);
                 numberOfItemsScanned = 0;
             }
             
@@ -52,9 +50,9 @@ BOOL runGame() {
         NSLog (@"You chose %i.", guess);
         
         if (guess > randomNumber) {
-            NSLog(@"You guessed too high! Try again!");
+            NSLog(@"%i is too high! Try again!", guess);
         } else if (guess < randomNumber) {
-            NSLog(@"You guessed too low! Try again!");
+            NSLog(@"%i is too low! Try again!", guess);
         }
         
         numberOfItemsScanned = 0;
